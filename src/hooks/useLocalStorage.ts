@@ -8,7 +8,7 @@ import { useState } from 'react';
  */
 export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
   const [storedValue, setStoredValue] = useState<T>(() => {
-    if (typeof globalThis.window === 'undefined') {
+    if (globalThis.window === undefined) {
       return initialValue;
     }
 
@@ -24,7 +24,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
   const setValue = (value: T) => {
     try {
       setStoredValue(value);
-      if (typeof globalThis.window !== 'undefined') {
+      if (globalThis.window !== undefined) {
         globalThis.localStorage.setItem(key, JSON.stringify(value));
       }
     } catch (error) {

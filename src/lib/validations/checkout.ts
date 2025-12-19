@@ -3,7 +3,9 @@ import { z } from 'zod';
 export const checkoutSchema = z.object({
   firstName: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
   lastName: z.string().min(2, 'Sobrenome deve ter pelo menos 2 caracteres'),
-  email: z.string().email({ message: 'Email inválido' }),
+  email: z
+    .string()
+    .regex(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i, 'Email inválido'),
   phone: z.string().min(10, 'Telefone deve ter pelo menos 10 dígitos'),
   street: z.string().min(5, 'Endereço deve ter pelo menos 5 caracteres'),
   number: z.string().min(1, 'Número é obrigatório'),

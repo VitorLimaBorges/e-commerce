@@ -17,7 +17,7 @@ export const useThemeStore = create<ThemeStore>()(
       toggleTheme: () => {
         set((state) => {
           const newTheme = !state.isDark;
-          if (typeof globalThis.window !== 'undefined') {
+          if (globalThis.window !== undefined) {
             document.documentElement.classList.toggle('dark', newTheme);
           }
           return { isDark: newTheme };
@@ -26,7 +26,7 @@ export const useThemeStore = create<ThemeStore>()(
 
       setTheme: (isDark: boolean) => {
         set({ isDark });
-        if (typeof globalThis.window !== 'undefined') {
+        if (globalThis.window !== undefined) {
           document.documentElement.classList.toggle('dark', isDark);
         }
       },

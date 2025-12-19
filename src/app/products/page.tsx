@@ -8,7 +8,7 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { useProducts, useFilteredProducts } from '@/hooks/useProducts';
 import { ProductFilters, Product } from '@/types';
 import { categories } from '@/mocks/products';
-import { ChevronDown, Filter, SlidersHorizontal } from 'lucide-react';
+import { ChevronDown, Filter, SlidersHorizontal, Star } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 12;
 
@@ -20,6 +20,7 @@ export default function ProductsPage({
   const { data: products, isLoading } = useProducts();
   const [currentPage, setCurrentPage] = useState(Number.parseInt(searchParams.page || '1', 10));
   const [priceRange, setPriceRange] = useState<{ min: number; max: number }>({ min: 0, max: 10000 });
+  const [minRating, setMinRating] = useState<number>(0);
 
   const [filters, setFilters] = useState<ProductFilters>({
     category: searchParams.category || 'all',
@@ -48,10 +49,12 @@ export default function ProductsPage({
 
   // Apply price range filter
   const priceFilteredProducts = useMemo(() => {
-    return filteredProducts.filter(
-      (p: Product) => p.price >= priceRange.min && p.price <= priceRange.max
-    );
-  }, [filteredProducts, priceRange]);
+    return filteredProducts.filter((p: Product) => {
+      const inPrice = p.price >= priceRange.min && p.price <= priceRange.max;
+      const inRating = minRating === 0 || (p.rating?.rate ?? 0) >= minRating;
+      return inPrice && inRating;
+    });
+  }, [filteredProducts, priceRange, minRating]);
 
   // Pagination
   const totalPages = Math.ceil((priceFilteredProducts?.length || 0) / ITEMS_PER_PAGE);
@@ -96,7 +99,7 @@ export default function ProductsPage({
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">Produtos</h1>
             {searchParams.search && (
               <p className="text-gray-600 dark:text-gray-400">
-                Resultados para: <span className="font-semibold">"{searchParams.search}"</span>
+                Resultados para: <span className="font-semibold">&quot;{searchParams.search}&quot;</span>
               </p>
             )}
           </div>
@@ -181,6 +184,40 @@ export default function ProductsPage({
                 </div>
               </div>
 
+              {/* Rating Filter */}
+              <div className="mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Avaliação mínima</h4>
+                <div className="flex items-center gap-2 flex-wrap">
+                  {[0, 4, 3, 2, 1].map((r) => (
+                    <button
+                      key={`rating-${r}`}
+                      onClick={() => setMinRating(r)}
+                      className={`px-3 py-1 rounded-lg border transition flex items-center gap-1 ${
+                        minRating === r
+                          ? 'bg-blue-600 text-white border-blue-600'
+                          : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
+                      }`}
+                      aria-label={r === 0 ? 'Todas as avaliações' : `${r}+ estrelas`}
+                    >
+                      {r === 0 ? (
+                        <span>Todas</span>
+                      ) : (
+                        <>
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <Star
+                              key={`star-${r}-${i}`}
+                              size={16}
+                              className={i < r ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300 dark:text-gray-600'}
+                            />
+                          ))}
+                          <span className="ml-1 text-sm">{r}+</span>
+                        </>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               {/* Sort */}
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Ordenar por</h4>
@@ -207,9 +244,9 @@ export default function ProductsPage({
               </p>
             </div>
 
-            {isLoading ? (
-              <GridSkeleton count={12} />
-            ) : paginatedProducts && paginatedProducts.length > 0 ? (
+            {isLoading && <GridSkeleton count={12} />}
+
+            {!isLoading && paginatedProducts && paginatedProducts.length > 0 && (
               <>
                 <ProductGrid products={paginatedProducts} />
                 {totalPages > 1 && (
@@ -220,11 +257,11 @@ export default function ProductsPage({
                   />
                 )}
               </>
-            ) : (
+            )}
+
+            {!isLoading && (!paginatedProducts || paginatedProducts.length === 0) && (
               <div className="text-center py-16">
-                <p className="text-xl text-gray-600 dark:text-gray-400">
-                  Nenhum produto encontrado
-                </p>
+                <p className="text-xl text-gray-600 dark:text-gray-400">Nenhum produto encontrado</p>
               </div>
             )}
           </main>

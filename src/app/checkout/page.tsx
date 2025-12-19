@@ -28,7 +28,7 @@ export default function CheckoutPage() {
     resolver: zodResolver(checkoutSchema),
   });
 
-  const onSubmit = async (data: CheckoutFormData) => {
+  const onSubmit = async () => {
     setIsProcessing(true);
 
     // Simulate payment processing
@@ -60,7 +60,7 @@ export default function CheckoutPage() {
 
   if (orderPlaced) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-linear-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
         <div className="max-w-md text-center">
           <div className="flex justify-center mb-4">
             <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
