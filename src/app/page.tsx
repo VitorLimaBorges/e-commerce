@@ -34,7 +34,7 @@ export default async function Home() {
 
       {/* Featured Categories */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">Categorias</h2>
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Categorias</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Electronics Category */}
           <Link
@@ -68,41 +68,41 @@ export default async function Home() {
 
       {/* Featured Products */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">Produtos em Destaque</h2>
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Produtos em Destaque</h2>
         <ProductGrid products={mockProducts.slice(0, 8)} />
       </section>
 
       {/* Trust Section */}
-      <section className="bg-gray-50 py-16 mt-16">
+      <section className="bg-gray-100 dark:bg-gray-800 py-16 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Por que confiar em nós?</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center">Por que confiar em nós?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-xl font-bold">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-300 text-xl font-bold">
                   ✓
                 </div>
               </div>
-              <h3 className="font-bold text-lg mb-2">Frete Grátis</h3>
-              <p className="text-gray-600">Envio gratuito para todas as compras acima de R$ 100</p>
+              <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">Frete Grátis</h3>
+              <p className="text-gray-600 dark:text-gray-400">Envio gratuito para todas as compras acima de R$ 100</p>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-xl font-bold">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-300 text-xl font-bold">
                   ✓
                 </div>
               </div>
-              <h3 className="font-bold text-lg mb-2">Garantia 100%</h3>
-              <p className="text-gray-600">Satisfação garantida ou seu dinheiro de volta</p>
+              <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">Garantia 100%</h3>
+              <p className="text-gray-600 dark:text-gray-400">Satisfação garantida ou seu dinheiro de volta</p>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-xl font-bold">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-300 text-xl font-bold">
                   ✓
                 </div>
               </div>
-              <h3 className="font-bold text-lg mb-2">Suporte 24/7</h3>
-              <p className="text-gray-600">Atendimento ao cliente disponível a qualquer momento</p>
+              <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">Suporte 24/7</h3>
+              <p className="text-gray-600 dark:text-gray-400">Atendimento ao cliente disponível a qualquer momento</p>
             </div>
           </div>
         </div>

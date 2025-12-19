@@ -105,7 +105,7 @@ export default function ProductsPage({
           </div>
           <button
             onClick={clearFilters}
-            className="flex items-center gap-2 px-4 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            className="flex items-center gap-2 px-4 py-2 text-sm border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           >
             <Filter size={16} />
             Limpar Filtros
@@ -115,9 +115,9 @@ export default function ProductsPage({
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar - Filters */}
           <aside className="lg:w-64 shrink-0">
-            <div className="sticky top-24 bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+            <div className="sticky top-24 bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2 mb-6">
-                <SlidersHorizontal size={20} className="text-gray-700 dark:text-gray-300" />
+                <SlidersHorizontal size={20} className="text-gray-800 dark:text-gray-200" />
                 <h3 className="font-bold text-gray-900 dark:text-white">Filtros</h3>
               </div>
 
@@ -136,7 +136,7 @@ export default function ProductsPage({
                       onChange={() => handleCategoryChange('all')}
                       className="w-4 h-4 text-blue-600 cursor-pointer"
                     />
-                    <span className="text-gray-700 dark:text-gray-300">Todas</span>
+                    <span className="text-gray-800 dark:text-gray-200">Todas</span>
                   </label>
                   {categories.map((cat) => (
                     <label key={cat} className="flex items-center gap-2 cursor-pointer">
@@ -147,7 +147,7 @@ export default function ProductsPage({
                         onChange={() => handleCategoryChange(cat)}
                         className="w-4 h-4 text-blue-600 cursor-pointer"
                       />
-                      <span className="text-gray-700 dark:text-gray-300 capitalize">{cat}</span>
+                      <span className="text-gray-800 dark:text-gray-200 capitalize">{cat}</span>
                     </label>
                   ))}
                 </div>
@@ -158,7 +158,7 @@ export default function ProductsPage({
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Faixa de Preço</h4>
                 <div className="space-y-4">
                   <div>
-                    <label className="text-sm text-gray-600 dark:text-gray-400">Min: R$ {priceRange.min}</label>
+                    <label className="text-sm text-gray-700 dark:text-gray-300">Min: R$ {priceRange.min}</label>
                     <input
                       type="range"
                       min="0"
@@ -170,7 +170,7 @@ export default function ProductsPage({
                     />
                   </div>
                   <div>
-                    <label className="text-sm text-gray-600 dark:text-gray-400">Max: R$ {priceRange.max}</label>
+                    <label className="text-sm text-gray-700 dark:text-gray-300">Max: R$ {priceRange.max}</label>
                     <input
                       type="range"
                       min="0"
@@ -195,7 +195,7 @@ export default function ProductsPage({
                       className={`px-3 py-1 rounded-lg border transition flex items-center gap-1 ${
                         minRating === r
                           ? 'bg-blue-600 text-white border-blue-600'
-                          : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
+                          : 'border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800'
                       }`}
                       aria-label={r === 0 ? 'Todas as avaliações' : `${r}+ estrelas`}
                     >

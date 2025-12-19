@@ -17,12 +17,12 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
-            <ShoppingCart size={64} className="mx-auto text-gray-400 mb-4" />
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Seu carrinho está vazio</h1>
-            <p className="text-gray-600 mb-8">Que tal adicionar alguns produtos?</p>
+            <ShoppingCart size={64} className="mx-auto text-gray-400 dark:text-gray-600 mb-4" />
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Seu carrinho está vazio</h1>
+            <p className="text-gray-600 dark:text-gray-400 mb-8">Que tal adicionar alguns produtos?</p>
             <Link
               href="/products"
               className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
@@ -36,20 +36,20 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Carrinho de Compras</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Carrinho de Compras</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
-          <div className="lg:col-span-2 bg-white rounded-lg p-6 shadow-md">
+          <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-gray-900">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                 {totalItems} {totalItems === 1 ? 'item' : 'itens'}
               </h2>
               <button
                 onClick={clearCart}
-                className="text-red-600 hover:text-red-700 text-sm font-medium"
+                className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-500 text-sm font-medium"
               >
                 Limpar Carrinho
               </button>
@@ -78,7 +78,7 @@ export default function CartPage() {
             {/* Continue Shopping */}
             <Link
               href="/products"
-              className="block text-center mt-4 text-blue-600 hover:text-blue-700 font-medium"
+              className="block text-center mt-4 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-500 font-medium"
             >
               ← Continuar Comprando
             </Link>

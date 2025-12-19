@@ -11,26 +11,26 @@ interface CartSummaryProps {
 
 export const CartSummary = ({ totalItems, totalPrice, onCheckout }: CartSummaryProps) => {
   return (
-    <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-      <h2 className="text-xl font-bold text-gray-900 mb-4">Resumo do Pedido</h2>
+    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Resumo do Pedido</h2>
 
       <div className="space-y-3 mb-6">
-        <div className="flex justify-between text-gray-700">
+        <div className="flex justify-between text-gray-700 dark:text-gray-300">
           <span>Subtotal ({totalItems} itens)</span>
           <span>{formatCurrency(totalPrice)}</span>
         </div>
-        <div className="flex justify-between text-gray-700">
+        <div className="flex justify-between text-gray-700 dark:text-gray-300">
           <span>Envio</span>
-          <span className="text-green-600 font-medium">Grátis</span>
+          <span className="text-green-600 dark:text-green-400 font-medium">Grátis</span>
         </div>
-        <div className="flex justify-between text-gray-700">
+        <div className="flex justify-between text-gray-700 dark:text-gray-300">
           <span>Impostos</span>
           <span>{formatCurrency(totalPrice * 0.1)}</span>
         </div>
       </div>
 
-      <div className="border-t border-gray-200 pt-4 mb-6">
-        <div className="flex justify-between text-lg font-bold text-gray-900">
+      <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mb-6">
+        <div className="flex justify-between text-lg font-bold text-gray-900 dark:text-white">
           <span>Total</span>
           <span>{formatCurrency(totalPrice * 1.1)}</span>
         </div>
@@ -46,7 +46,7 @@ export const CartSummary = ({ totalItems, totalPrice, onCheckout }: CartSummaryP
       ) : (
         <Link
           href="/products"
-          className="block text-center bg-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-400 transition"
+          className="block text-center bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200 py-3 rounded-lg font-semibold hover:bg-gray-400 dark:hover:bg-gray-500 transition"
         >
           Continuar Comprando
         </Link>

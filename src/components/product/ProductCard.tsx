@@ -36,7 +36,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <motion.div 
-      className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group"
+      className="h-full bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group border border-gray-200 dark:border-gray-700 flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -4 }}
@@ -75,20 +75,20 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </Link>
 
       {/* Content */}
-      <div className="p-4">
+      <div className="p-4 flex flex-col flex-1">
         <Link href={`/products/${product.id}`}>
-          <h3 className="font-semibold text-gray-800 dark:text-gray-200 line-clamp-2 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100 line-clamp-2 hover:text-blue-600 dark:hover:text-blue-400 transition">
             {truncateText(product.title, 50)}
           </h3>
         </Link>
 
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">{product.description}</p>
+        <p className="text-sm text-gray-700 dark:text-gray-300 mt-1 line-clamp-2">{product.description}</p>
 
-        <div className="mt-4 flex items-center justify-between">
+        <div className="mt-4 flex items-center justify-between flex-1">
           <div>
             <p className="text-lg font-bold text-gray-900 dark:text-white">{formatCurrency(product.price)}</p>
             {product.rating && (
-              <p className="text-xs text-gray-500 dark:text-gray-400">({product.rating.count} avaliações)</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">({product.rating.count} avaliações)</p>
             )}
           </div>
         </div>
@@ -96,7 +96,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         {/* Add to Cart Button */}
         <button
           onClick={handleAddToCart}
-          className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition"
+          className="w-full mt-auto bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition"
           aria-label={`Adicionar ${product.title} ao carrinho`}
         >
           <ShoppingCart size={18} />

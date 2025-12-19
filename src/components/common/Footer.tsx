@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 mt-16">
+    <footer className="bg-gray-900 dark:bg-gray-950 text-gray-300 dark:text-gray-400 mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About */}
@@ -67,8 +67,11 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
-          <p>&copy; 2025 Ecommerce. Todos os direitos reservados.</p>
+        <div className="border-t border-gray-800 dark:border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+          <div>
+            <p>&copy; 2025 Ecommerce. Todos os direitos reservados.</p>
+            <p className="text-xs text-gray-500 mt-2">Criado por <span className="text-gray-300">Vitor Borges</span></p>
+          </div>
           <div className="flex gap-4 mt-4 md:mt-0">
             <button className="hover:text-white transition cursor-pointer">
               Facebook

@@ -5,15 +5,16 @@ import { useCart } from '@/hooks/useCart';
 import { useWishlistStore } from '@/store/wishlistStore';
 import Image from 'next/image';
 import { formatCurrency } from '@/utils/formatter';
-import { useState } from 'react';
+import { useState, use } from 'react';
 import { Heart, Share2, Star, Truck, Shield, Check } from 'lucide-react';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { ProductGrid } from '@/components/product/ProductGrid';
 import { toast } from 'react-hot-toast';
 import { motion } from 'framer-motion';
 
-export default function ProductDetailPage({ params }: Readonly<{ params: { id: string } }>) {
-  const productId = Number.parseInt(params.id, 10);
+export default function ProductDetailPage({ params }: Readonly<{ params: Promise<{ id: string }> }>) {
+  const { id } = use(params);
+  const productId = Number.parseInt(id, 10);
   const { data: product, isLoading, error } = useProduct(productId);
   const { data: allProducts } = useProducts();
   const { addItem } = useCart();
@@ -199,7 +200,8 @@ export default function ProductDetailPage({ params }: Readonly<{ params: { id: s
                   max="10"
                   value={quantity}
                   onChange={(e) => setQuantity(Math.max(1, Number.parseInt(e.target.value, 10) || 1))}
-                  className="px-6 py-2 font-semibold w-16 text-center border-0 bg-transparent text-gray-900 dark:text-white"
+                  className="px-6 py-2 font-semibold w-16 text-center border-0 bg-transparent text-gray-900 dark:text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  readOnly={false}
                 />
                 <button
                   onClick={() => setQuantity(quantity + 1)}
